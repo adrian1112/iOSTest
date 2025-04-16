@@ -12,16 +12,14 @@ import RxCocoa
 
 class ListViewModel {
     private let disposeBag = DisposeBag()
+    private var offset = 0
+    private let limit = 10
+    private var canFetch = true
     
     var loading = BehaviorRelay<Bool>(value: false)
     var itemList = BehaviorRelay<[Item]>(value: [])
     var paginationData = BehaviorRelay<PaginationResponse?>(value: nil)
     let error = PublishRelay<String>()
-    
-    private var offset = 0
-    private let limit = 10
-    private var canFetch = true
-    
     
     func fetchData(){
         guard !self.loading.value, canFetch  else { return }
@@ -38,7 +36,6 @@ class ListViewModel {
                     self?.itemList.accept(currentItems)
                     self?.paginationData.accept(pagination)
                 case .failure(let error):
-                    print("❌ Error fetching abilities: \(error)")
                     self?.error.accept(error.localizedDescription)
             }
         })

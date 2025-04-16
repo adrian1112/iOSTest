@@ -15,8 +15,6 @@ class ViewController: UIViewController {
     private let viewModel = ListViewModel()
     private let disposeBag = DisposeBag()
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.bindViewModel()
@@ -48,10 +46,6 @@ class ViewController: UIViewController {
         }).disposed(by: disposeBag)
         
     }
-
-    
-  
-    
 }
 
 extension ViewController: UITableViewDelegate{

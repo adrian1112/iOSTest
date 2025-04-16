@@ -37,13 +37,10 @@ class WServices{
         AF.request(url)
             .validate()
             .responseDecodable(of: Pokemon.self) { response in
-//                print("termina: ", response)
                 switch response.result {
                 case .success(let data):
-                    print(data)
                     completion(.success(data))
                 case .failure(let error):
-                    print("error: ",error.localizedDescription)
                     completion(.failure(error))
                 }
             }
